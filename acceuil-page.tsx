@@ -33,7 +33,6 @@ import {
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import Header from "./components/header"
-import Footer from "./footer"
 
 export default function Component() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -701,7 +700,145 @@ export default function Component() {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <footer className="relative z-10 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            {/* Company Info */}
+            <div className="md:col-span-1">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+                  <div className="w-5 h-5 bg-gray-900 rounded-lg"></div>
+                </div>
+                <div>
+                  <span className="text-lg font-bold">Blackswantechnology</span>
+                  <div className="text-xs text-gray-400 font-medium">DIGITAL TRANSFORMATION</div>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Votre partenaire de confiance pour la transformation digitale au Maroc. Experts certifiés HubSpot et
+                Odoo.
+              </p>
+              <div className="flex space-x-4">
+                {[
+                  { icon: Facebook, href: "#" },
+                  { icon: Twitter, href: "#" },
+                  { icon: Linkedin, href: "#" },
+                  { icon: Instagram, href: "#" },
+                  { icon: Youtube, href: "#" },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#ff5c35] transition-colors duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h3 className="text-lg font-bold mb-6">Services</h3>
+              <ul className="space-y-4">
+                {[
+                  "HubSpot CRM",
+                  "Marketing Automation",
+                  "Odoo ERP",
+                  "Intégration Systèmes",
+                  "Formation Équipes",
+                  "Support Technique",
+                ].map((service, index) => (
+                  <li key={index}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+                      {service}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Solutions */}
+            <div>
+              <h3 className="text-lg font-bold mb-6">Solutions</h3>
+              <ul className="space-y-4">
+                {[
+                  "Audit Digital",
+                  "Stratégie CRM",
+                  "Automatisation",
+                  "Analytics & Reporting",
+                  "Migration Données",
+                  "Optimisation ROI",
+                ].map((solution, index) => (
+                  <li key={index}>
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+                      {solution}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-lg font-bold mb-6">Contact</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[#ff5c35] mt-1" />
+                  <div>
+                    <p className="text-white font-medium">Casablanca, Maroc</p>
+                    <p className="text-gray-400 text-sm">Twin Center</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-[#ff5c35]" />
+                  <p className="text-gray-400">+212 6 XX XX XX XX</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-[#ff5c35]" />
+                  <p className="text-gray-400">contact@blackswantechnology.ma</p>
+                </div>
+              </div>
+              <div className="mt-6">
+                <Button className="bg-[#ff5c35] text-white hover:bg-[#ff5c35]/90 transition-colors duration-300 w-full">
+                  Consultation Gratuite
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center gap-6 mb-4 md:mb-0">
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-[#ff5c35]" />
+                <span className="text-sm text-gray-400">Partenaire Platinum HubSpot</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-[#714b67]" />
+                <span className="text-sm text-gray-400">Partenaire Officiel Odoo</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <a href="#" className="hover:text-white transition-colors duration-300">
+                Mentions Légales
+              </a>
+              <a href="#" className="hover:text-white transition-colors duration-300">
+                Politique de Confidentialité
+              </a>
+              <a href="#" className="hover:text-white transition-colors duration-300">
+                CGV
+              </a>
+            </div>
+          </div>
+
+          <div className="text-center mt-8 pt-8 border-t border-gray-800">
+            <p className="text-gray-400 text-sm">
+              © 2024 Blackswantechnology. Tous droits réservés. Transformons l'impossible ensemble.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

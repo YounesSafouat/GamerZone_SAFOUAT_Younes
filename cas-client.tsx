@@ -21,7 +21,7 @@ import Header from "./components/header"
 const clientsData = [
   {
     id: 1,
-    name: "TechCorp Solutions",
+    name: "TEST 1",
     sector: "Technologie",
     solution: "hubspot",
     description: "Automatisation marketing et CRM pour startup tech",
@@ -31,7 +31,7 @@ const clientsData = [
   },
   {
     id: 2,
-    name: "Atlas Manufacturing",
+    name: "TEST 2",
     sector: "Industrie",
     solution: "odoo",
     description: "ERP complet pour optimisation production",
@@ -41,7 +41,7 @@ const clientsData = [
   },
   {
     id: 3,
-    name: "MediCare Plus",
+    name: "TEST 3",
     sector: "Santé",
     solution: "hubspot",
     description: "CRM patient et marketing médical",
@@ -51,7 +51,7 @@ const clientsData = [
   },
   {
     id: 4,
-    name: "EduTech Academy",
+    name: "TEST 4",
     sector: "Éducation",
     solution: "odoo",
     description: "Gestion complète établissement scolaire",
@@ -61,7 +61,7 @@ const clientsData = [
   },
   {
     id: 5,
-    name: "RetailMax",
+    name: "TEST 5",
     sector: "Commerce",
     solution: "both",
     description: "Intégration ERP + CRM pour chaîne retail",
@@ -71,7 +71,7 @@ const clientsData = [
   },
   {
     id: 6,
-    name: "AutoParts Pro",
+    name: "TEST 6",
     sector: "Automobile",
     solution: "odoo",
     description: "ERP spécialisé pièces automobiles",
@@ -81,7 +81,7 @@ const clientsData = [
   },
   {
     id: 7,
-    name: "FoodChain Express",
+    name: "TEST 7",
     sector: "Restauration",
     solution: "hubspot",
     description: "CRM et marketing pour chaîne restaurants",
@@ -91,7 +91,7 @@ const clientsData = [
   },
   {
     id: 8,
-    name: "PropTech Maroc",
+    name: "TEST 8",
     sector: "Immobilier",
     solution: "both",
     description: "Solution complète gestion immobilière",
