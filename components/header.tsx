@@ -47,42 +47,12 @@ export default function Header({ scrollY, isLoaded }: HeaderProps) {
           : "backdrop-blur-md bg-white/60 border border-gray-100/30 shadow-lg"
       } ${isLoaded ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"}`}
     >
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
+      <nav className="flex items-center justify-between max-w-6xl mx-auto">
         <div className="flex items-center space-x-3">
-          <div className="relative">
-            <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-              {/* Blackswantechnology Logo SVG */}
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="group-hover:rotate-45 transition-transform duration-300"
-              >
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
-                <path
-                  d="M2 17L12 22L22 17"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 12L12 17L22 12"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#ff5c35] rounded-full"></div>
-          </div>
-          <div>
-            <span className="text-xl font-bold text-black tracking-tight">Blackswantechnology</span>
-            <div className="text-xs text-gray-500 font-medium tracking-wide">DIGITAL TRANSFORMATION</div>
-          </div>
+          <a href="/"  className="relative">
+            <img src="bst.png" alt="blackswantechnology" className="w-1/2"/>
+            </a>
+           
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
