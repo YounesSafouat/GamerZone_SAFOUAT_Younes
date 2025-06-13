@@ -1,6 +1,6 @@
 "use client"
 
-import AcceuilPage from "../acceuil-page"
+import AcceuilPage from "../pages/acceuil-page"
 
 export default function Page() {
   return <AcceuilPage />

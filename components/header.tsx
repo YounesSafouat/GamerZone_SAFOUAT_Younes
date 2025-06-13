@@ -51,7 +51,31 @@ export default function Header({ scrollY, isLoaded }: HeaderProps) {
         <div className="flex items-center space-x-3">
           <div className="relative">
             <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-              <div className="w-6 h-6 bg-white rounded-lg group-hover:rotate-45 transition-transform duration-300"></div>
+              {/* Blackswantechnology Logo SVG */}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="group-hover:rotate-45 transition-transform duration-300"
+              >
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
+                <path
+                  d="M2 17L12 22L22 17"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 12L12 17L22 12"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#ff5c35] rounded-full"></div>
           </div>

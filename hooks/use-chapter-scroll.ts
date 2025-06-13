@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, type RefObject } from "react"
 
 export function useChapterScroll<T extends HTMLElement>(): [RefObject<T>, boolean, number] {
-  const ref = useRef<T>(null)
+  const ref = useRef<T>(null!)
   const [isVisible, setIsVisible] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
 
@@ -14,7 +14,7 @@ export function useChapterScroll<T extends HTMLElement>(): [RefObject<T>, boolea
 
         // Calculate scroll progress within the section
         if (entry.isIntersecting) {
-          const rect = entry.boundingRect
+          const rect = entry.boundingClientRect
           const windowHeight = window.innerHeight
           const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight))
           setScrollProgress(progress)
@@ -26,17 +26,19 @@ export function useChapterScroll<T extends HTMLElement>(): [RefObject<T>, boolea
       },
     )
 
+    // Use a function to always get the latest ref.current
     const currentRef = ref.current
     if (currentRef) {
       observer.observe(currentRef)
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
+      if (ref.current) {
+        observer.unobserve(ref.current)
       }
+      observer.disconnect()
     }
-  }, [])
+  }, [ref])
 
   return [ref, isVisible, scrollProgress]
 }

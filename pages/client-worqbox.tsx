@@ -20,7 +20,7 @@ import {
   Gauge,
 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
-import Header from "./components/header"
+import Header from "../components/header"
 
 export default function ClientWorqbox() {
   const [scrollY, setScrollY] = useState(0)
@@ -124,7 +124,7 @@ export default function ClientWorqbox() {
       <Header scrollY={scrollY} isLoaded={isLoaded} />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 md:pt-40 pb-20 px-6 lg:px-8 scroll-section">
+      <section ref={heroRef} className="relative pt-40 md:pt-48 pb-20 px-6 lg:px-8 scroll-section">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
@@ -174,8 +174,8 @@ export default function ClientWorqbox() {
                 <div className="absolute top-0 left-0 w-full h-2 bg-[#714b67] rounded-t-3xl"></div>
 
                 {/* Company Logo */}
-                <div className="w-40  flex items-center justify-center mb-6">
-                <img src="Logo - Worqbox.png" alt="worqbox"/>
+                <div className="w-20 h-20 bg-[#714b67] rounded-2xl flex items-center justify-center mb-6">
+                  <span className="text-white font-bold text-2xl">WQ</span>
                 </div>
 
                 {/* Company Info */}
@@ -436,10 +436,10 @@ export default function ClientWorqbox() {
               </blockquote>
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">MK</span>
+                  <span className="text-white font-bold text-lg">YS</span>
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg">Mehdi Ktiri</div>
+                  <div className="font-bold text-white text-lg">Mehdi ktiri</div>
                   <div className="text-white/80">Fondateur & CEO, Worqbox</div>
                 </div>
               </div>

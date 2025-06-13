@@ -8,9 +8,9 @@ type AnimationOptions = {
   once?: boolean
 }
 
-export function useScrollAnimation<T extends HTMLElement>(options: AnimationOptions = {}): [RefObject<T>, boolean] {
+export function useScrollAnimation<T extends HTMLElement>(options: AnimationOptions = {}): [RefObject<T | null>, boolean] {
   const { threshold = 0.1, rootMargin = "0px", once = true } = options
-  const ref = useRef<T>(null)
+  const ref = useRef<T | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {

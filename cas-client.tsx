@@ -21,13 +21,14 @@ import Header from "./components/header"
 const clientsData = [
   {
     id: 1,
-    name: "TEST 1",
-    sector: "Technologie",
-    solution: "hubspot",
-    description: "Automatisation marketing et CRM pour startup tech",
+    name: "Worqbox",
+    sector: "deco",
+    solution: "odoo",
+    description: "ERP complet pour optimisation des processus",
     results: "+300% Leads qualifiés",
-    logo: "TC",
-    color: "#ff5c35",
+    logo: "WO",
+    color: "#714b67",
+    url: "/client/worqbox",
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ const clientsData = [
     results: "-40% Coûts opérationnels",
     logo: "AM",
     color: "#714b67",
+    url: "/client/worqbox",
   },
   {
     id: 3,
@@ -48,6 +50,7 @@ const clientsData = [
     results: "+250% Rendez-vous",
     logo: "MP",
     color: "#ff5c35",
+    url: "/client/worqbox",
   },
   {
     id: 4,
@@ -58,6 +61,7 @@ const clientsData = [
     results: "+90% Efficacité admin",
     logo: "EA",
     color: "#714b67",
+    url: "/client/worqbox",
   },
   {
     id: 5,
@@ -68,6 +72,7 @@ const clientsData = [
     results: "+180% ROI",
     logo: "RM",
     color: "#000000",
+    url: "/client/worqbox",
   },
   {
     id: 6,
@@ -78,6 +83,7 @@ const clientsData = [
     results: "-50% Temps gestion stock",
     logo: "AP",
     color: "#714b67",
+    url: "/client/worqbox",
   },
   {
     id: 7,
@@ -88,6 +94,7 @@ const clientsData = [
     results: "+400% Commandes en ligne",
     logo: "FC",
     color: "#ff5c35",
+    url: "/client/worqbox",
   },
   {
     id: 8,
@@ -98,6 +105,7 @@ const clientsData = [
     results: "+220% Ventes",
     logo: "PT",
     color: "#000000",
+    url: "/client/worqbox",
   },
 ]
 
@@ -316,7 +324,8 @@ export default function CasClient() {
                         variant="outline"
                         className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       >
-                        Voir le cas <ArrowRight className="ml-2 w-4 h-4" />
+                        <a href={client.url} className="inline-flex items-center">
+                        Voir le cas <ArrowRight className="ml-2 w-4 h-4" /></a>
                       </Button>
                     </div>
 
