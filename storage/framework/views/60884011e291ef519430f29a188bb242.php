@@ -1,133 +1,113 @@
-<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
-<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('app-layout'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-     <?php $__env->slot('header', null, []); ?> 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Player Details')); ?>
+<!DOCTYPE html>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
-        </h2>
-     <?php $__env->endSlot(); ?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GamerZone - <?php echo e($player->user->name); ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Player Information</h3>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Name</label>
-                                <p class="mt-1 text-sm text-gray-900"><?php echo e($player->user->name); ?></p>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Email</label>
-                                <p class="mt-1 text-sm text-gray-900"><?php echo e($player->user->email); ?></p>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Game Username</label>
-                                <p class="mt-1 text-sm text-gray-900"><?php echo e($player->game_username); ?></p>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Game Type</label>
-                                <p class="mt-1 text-sm text-gray-900"><?php echo e($player->game_type); ?></p>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Tournament</label>
-                                <p class="mt-1 text-sm text-gray-900">
-                                    <?php echo e($player->tournament ? $player->tournament->name : 'Not registered for any tournament'); ?>
-
-                                </p>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Created At</label>
-                                <p class="mt-1 text-sm text-gray-900"><?php echo e($player->created_at->format('M d, Y H:i')); ?>
-
-                                </p>
-                            </div>
-                        </div>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-semibold text-gray-900"><?php echo e($player->user->name); ?></h1>
                     </div>
-
-                    <?php if($player->tournament): ?>
-                        <div class="mb-6">
-                            <h3 class="text-lg font-medium text-gray-900 mb-4">Tournament Information</h3>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Tournament Name</label>
-                                    <p class="mt-1 text-sm text-gray-900"><?php echo e($player->tournament->name); ?></p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Description</label>
-                                    <p class="mt-1 text-sm text-gray-900"><?php echo e($player->tournament->description); ?></p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Start Date</label>
-                                    <p class="mt-1 text-sm text-gray-900">
-                                        <?php echo e($player->tournament->start_date->format('M d, Y')); ?></p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">End Date</label>
-                                    <p class="mt-1 text-sm text-gray-900">
-                                        <?php echo e($player->tournament->end_date->format('M d, Y')); ?></p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Status</label>
-                                    <p class="mt-1 text-sm text-gray-900"><?php echo e(ucfirst($player->tournament->status)); ?>
-
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Max Participants</label>
-                                    <p class="mt-1 text-sm text-gray-900"><?php echo e($player->tournament->max_participants); ?>
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="flex items-center justify-end">
-                        <a href="<?php echo e(route('players.index')); ?>"
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Back to Players
-                        </a>
-                        <?php if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('organizer')): ?>
-                            <a href="<?php echo e(route('players.edit', $player->id)); ?>"
-                                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                Edit Player
-                            </a>
-                        <?php endif; ?>
+                    <div class="flex items-center space-x-4">
+                        <a href="<?php echo e(route('players.index')); ?>" class="text-gray-700 hover:text-gray-900">Back to
+                            Players</a>
+                        <a href="<?php echo e(route('dashboard')); ?>" class="text-gray-700 hover:text-gray-900">Dashboard</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="h-16 w-16 rounded-full bg-green-500 flex items-center justify-center">
+                                        <span
+                                            class="text-white text-2xl font-bold"><?php echo e(substr($player->user->name, 0, 1)); ?></span>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h2 class="text-2xl font-bold text-gray-900"><?php echo e($player->user->name); ?></h2>
+                                    <p class="text-gray-600"><?php echo e($player->user->email); ?></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-6 py-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Game Username
+                                    </h4>
+                                    <p class="mt-1 text-lg font-semibold text-gray-900"><?php echo e($player->game_username); ?></p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Game Type</h4>
+                                    <p class="mt-1 text-lg font-semibold text-gray-900"><?php echo e($player->game_type); ?></p>
+                                </div>
+                            </div>
+
+                            <?php if($player->tournament): ?>
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Tournament Information</h3>
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-blue-900">
+                                                    <?php echo e($player->tournament->name); ?></h4>
+                                                <p class="text-blue-700"><?php echo e($player->tournament->description); ?></p>
+                                                <div class="mt-2 text-sm text-blue-600">
+                                                    <span class="mr-4">Start:
+                                                        <?php echo e($player->tournament->start_date->format('M d, Y')); ?></span>
+                                                    <span>End:
+                                                        <?php echo e($player->tournament->end_date->format('M d, Y')); ?></span>
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                                                <?php if($player->tournament->status === 'upcoming'): ?> bg-yellow-100 text-yellow-800
+                                                <?php elseif($player->tournament->status === 'ongoing'): ?> bg-green-100 text-green-800
+                                                <?php else: ?> bg-gray-100 text-gray-800 <?php endif; ?>">
+                                                <?php echo e(ucfirst($player->tournament->status)); ?>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="flex justify-end space-x-4">
+                                <a href="<?php echo e(route('players.edit', $player)); ?>"
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                    Edit Player
+                                </a>
+                                <form method="POST" action="<?php echo e(route('players.destroy', $player)); ?>" class="inline">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit"
+                                        class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+                                        onclick="return confirm('Are you sure you want to remove this player?')">
+                                        Remove Player
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
- <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
-<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
-<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
-<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
-<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
+</body>
+
+</html>
 <?php /**PATH C:\Users\PC\Desktop\fac\laravel\gamerzone\resources\views/players/show.blade.php ENDPATH**/ ?>

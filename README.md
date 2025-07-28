@@ -1,270 +1,100 @@
-# GamerZone - Application Laravel
+# GamerZone Laravel Application
 
-## 📋 Description
-GamerZone est une application web Laravel pour la gestion de tournois de jeux vidéo. L'application permet aux administrateurs, organisateurs et joueurs de gérer et participer à des tournois.
+A comprehensive gaming tournament management system built with Laravel 11.
 
-## 🚀 Installation et Configuration
+## Features
 
-### Prérequis
-- PHP 8.1+
+- **User Authentication**: Built with Laravel Breeze
+- **Role-Based Access Control**: Admin, Organizer, and Player roles
+- **Tournament Management**: Create, edit, and manage tournaments
+- **Player Registration**: Players can register for tournaments
+- **Admin Dashboard**: Statistics and system overview
+- **Database Seeding**: Pre-populated with test data
+
+## Requirements
+
+- PHP 8.1 or higher
 - Composer
-- MySQL (via XAMPP)
-- Node.js et npm
+- SQLite (or MySQL/PostgreSQL)
 
-### 1. Installation de Laravel
-```bash
-composer create-project laravel/laravel gamerzone
-cd gamerzone
-```
+## Installation
 
-### 2. Installation des dépendances
-```bash
-composer install
-npm install
-```
+1. **Clone the repository** (if not already done):
+   ```bash
+   git clone <repository-url>
+   cd gamerzone
+   ```
 
-### 3. Configuration de l'environnement
-```bash
-copy .env.example .env
-```
+2. **Install PHP dependencies**:
+   ```bash
+   composer install
+   ```
 
-Modifier le fichier `.env` pour MySQL :
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=gamerzone
-DB_USERNAME=root
-DB_PASSWORD=
-```
+3. **Install Node.js dependencies** (for frontend assets):
+   ```bash
+   npm install
+   ```
 
-### 4. Génération de la clé d'application
-```bash
-php artisan key:generate
-```
+4. **Set up environment file**:
+   ```bash
+   cp .env.example .env
+   ```
 
-### 5. Installation de Laravel Breeze
-```bash
-composer require laravel/breeze --dev
-php artisan breeze:install
-```
+5. **Generate application key**:
+   ```bash
+   php artisan key:generate
+   ```
 
-### 6. Création de la base de données
-- Démarrer XAMPP (MySQL et Apache)
-- Créer la base de données `gamerzone` via phpMyAdmin
-- Ou utiliser la commande : `mysql -u root -p -e "CREATE DATABASE gamerzone;"`
+6. **Configure database**:
+   - Edit `.env` file and set your database configuration
+   - For SQLite (default): `DB_CONNECTION=sqlite`
+   - For MySQL: Set `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 
-### 7. Exécution des migrations
-```bash
-php artisan migrate
-```
+7. **Run database migrations**:
+   ```bash
+   php artisan migrate
+   ```
 
-### 8. Création des modèles, contrôleurs et migrations
-```bash
-php artisan make:model Role -m
-php artisan make:model Tournament -m
-php artisan make:model Player -m
-php artisan make:controller TournamentController --resource
-php artisan make:controller PlayerController --resource
-php artisan make:controller AdminController
-php artisan make:middleware CheckRole
-```
+8. **Seed the database**:
+   ```bash
+   php artisan db:seed
+   ```
 
-### 9. Création des factories et seeders
-```bash
-php artisan make:factory RoleFactory
-php artisan make:factory TournamentFactory
-php artisan make:factory PlayerFactory
-php artisan make:seeder DatabaseSeeder
-```
+9. **Create test users**:
+   ```bash
+   php artisan user:create-test
+   ```
 
-### 10. Création de la commande personnalisée
-```bash
-php artisan make:command CreateTestUser
-```
+10. **Build frontend assets**:
+    ```bash
+    npm run build
+    ```
 
-### 11. Compilation des assets
-```bash
-npm run build
-```
+11. **Start the development server**:
+    ```bash
+    php artisan serve
+    ```
 
-### 12. Peuplement de la base de données
-```bash
-php artisan db:seed
-php artisan app:create-test-user
-```
+## Test User Credentials
 
-### 13. Démarrage du serveur
-```bash
-php artisan serve
-```
+After running the setup commands, you can log in with these test accounts:
 
-## 🔐 Comptes de test
+- **Admin**: `admin@gamerzone.com` / `password123`
+- **Organizer**: `organizer@gamerzone.com` / `password123`
+- **Player**: `player@gamerzone.com` / `password123`
 
-### Administrateur
-- **Email**: `admin@gamerzone.com`
-- **Mot de passe**: `password123`
-
-### Organisateur
-- **Email**: `organizer@gamerzone.com`
-- **Mot de passe**: `password123`
-
-### Joueur
-- **Email**: `player@gamerzone.com`
-- **Mot de passe**: `password123`
-
-## 🛣️ Routes de l'application
-
-### Routes d'authentification
-```
-GET    /login                    - Page de connexion
-POST   /login                    - Traitement de la connexion
-POST   /logout                   - Déconnexion
-GET    /register                 - Page d'inscription
-POST   /register                 - Traitement de l'inscription
-```
-
-### Routes principales
-```
-GET    /                         - Redirection vers le dashboard
-GET    /dashboard                - Tableau de bord principal
-GET    /profile                  - Profil utilisateur
-PATCH  /profile                  - Mise à jour du profil
-DELETE /profile                  - Suppression du profil
-```
-
-### Routes des tournois
-```
-GET    /tournaments              - Liste des tournois
-GET    /tournaments/create       - Formulaire de création
-POST   /tournaments              - Création d'un tournoi
-GET    /tournaments/{id}         - Détails d'un tournoi
-GET    /tournaments/{id}/edit    - Formulaire d'édition
-PUT    /tournaments/{id}         - Mise à jour d'un tournoi
-DELETE /tournaments/{id}         - Suppression d'un tournoi
-```
-
-### Routes des joueurs
-```
-GET    /players                  - Liste des joueurs
-GET    /players/create           - Formulaire de création
-POST   /players                  - Création d'un joueur
-GET    /players/{id}             - Détails d'un joueur
-GET    /players/{id}/edit        - Formulaire d'édition
-PUT    /players/{id}             - Mise à jour d'un joueur
-DELETE /players/{id}             - Suppression d'un joueur
-```
-
-### Routes d'administration
-```
-GET    /admin/dashboard          - Tableau de bord administrateur
-```
-
-## 🏗️ Structure de la base de données
-
-### Table `users`
-- `id` (Primary Key)
-- `name` (VARCHAR)
-- `email` (VARCHAR, Unique)
-- `password` (VARCHAR)
-- `created_at`, `updated_at`
-
-### Table `roles`
-- `id` (Primary Key)
-- `name` (VARCHAR)
-- `description` (TEXT)
-- `created_at`, `updated_at`
-
-### Table `role_user` (Pivot)
-- `user_id` (Foreign Key)
-- `role_id` (Foreign Key)
-
-### Table `tournaments`
-- `id` (Primary Key)
-- `name` (VARCHAR)
-- `description` (TEXT)
-- `start_date` (DATE)
-- `end_date` (DATE)
-- `max_participants` (INTEGER)
-- `status` (ENUM: upcoming, ongoing, completed, cancelled)
-- `created_at`, `updated_at`
-
-### Table `players`
-- `id` (Primary Key)
-- `user_id` (Foreign Key)
-- `tournament_id` (Foreign Key, Nullable)
-- `game_username` (VARCHAR)
-- `game_type` (VARCHAR)
-- `created_at`, `updated_at`
-
-## 👥 Rôles et permissions
-
-### Administrateur
-- Accès complet à toutes les fonctionnalités
-- Gestion des utilisateurs, tournois et joueurs
-- Accès au tableau de bord administrateur
-
-### Organisateur
-- Création et gestion des tournois
-- Gestion des joueurs
-- Accès aux statistiques de base
-
-### Joueur
-- Consultation des tournois
-- Consultation des autres joueurs
-- Pas d'accès aux fonctionnalités de gestion
-
-## 🎨 Interface utilisateur
-
-### Composants principaux
-- **Navigation** : Menu principal avec liens vers Dashboard, Tournois, Joueurs
-- **Tableau de bord** : Interface adaptée selon le rôle de l'utilisateur
-- **Formulaires** : Création et édition de tournois et joueurs
-- **Listes** : Affichage des tournois et joueurs avec actions
-
-### Styles
-- Framework CSS : Tailwind CSS
-- Design responsive
-- Boutons colorés selon l'action (Bleu=voir, Jaune=éditer, Rouge=supprimer)
-
-## 🔧 Commandes artisan utiles
-
-```bash
-# Générer une clé d'application
-php artisan key:generate
-
-# Vider le cache
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-
-# Lister les routes
-php artisan route:list
-
-# Créer des utilisateurs de test
-php artisan app:create-test-user
-
-# Réinitialiser la base de données
-php artisan migrate:fresh --seed
-
-# Démarrer le serveur de développement
-php artisan serve
-```
-
-## 📁 Structure des fichiers
+## Project Structure
 
 ```
 gamerzone/
 ├── app/
-│   ├── Console/Commands/
-│   │   └── CreateTestUser.php
-│   ├── Http/Controllers/
-│   │   ├── AdminController.php
-│   │   ├── PlayerController.php
-│   │   └── TournamentController.php
-│   ├── Http/Middleware/
-│   │   └── CheckRole.php
+│   ├── Console/Commands/CreateTestUser.php
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AdminController.php
+│   │   │   ├── PlayerController.php
+│   │   │   └── TournamentController.php
+│   │   └── Middleware/CheckRole.php
 │   └── Models/
 │       ├── Player.php
 │       ├── Role.php
@@ -280,35 +110,57 @@ gamerzone/
 │   │   ├── create_roles_table.php
 │   │   ├── create_role_user_table.php
 │   │   └── create_tournaments_table.php
-│   └── seeders/
-│       └── DatabaseSeeder.php
+│   └── seeders/DatabaseSeeder.php
 ├── resources/views/
-│   ├── admin/
-│   │   └── dashboard.blade.php
-│   ├── players/
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   ├── index.blade.php
-│   │   └── show.blade.php
-│   ├── tournaments/
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   ├── index.blade.php
-│   │   └── show.blade.php
-│   └── dashboard.blade.php
-└── routes/
-    └── web.php
+│   ├── dashboard.blade.php
+│   └── welcome.blade.php
+├── routes/
+│   ├── auth.php
+│   ├── console.php
+│   └── web.php
+├── artisan
+├── composer.json
+└── bootstrap/app.php
 ```
 
-## 🌐 Accès à l'application
+## Database Schema
 
-- **URL principale** : `http://127.0.0.1:8000`
-- **phpMyAdmin** : `http://localhost/phpmyadmin`
+### Tables
 
-## 📝 Notes importantes
+1. **users** - User accounts with authentication
+2. **roles** - User roles (admin, organizer, player)
+3. **role_user** - Many-to-many relationship between users and roles
+4. **tournaments** - Tournament information and details
+5. **players** - Player registrations for tournaments
 
-- L'application utilise MySQL via XAMPP
-- Tous les formulaires incluent la validation côté serveur
-- L'authentification est gérée par Laravel Breeze
-- Les permissions sont basées sur les rôles utilisateur
-- L'interface est responsive et utilise Tailwind CSS
+### Relationships
+
+- Users can have multiple roles (many-to-many)
+- Tournaments can have multiple players (one-to-many)
+- Players belong to users and tournaments (many-to-one)
+
+## Available Commands
+
+- `php artisan user:create-test` - Create test users with roles
+- `php artisan migrate:fresh --seed` - Reset database and seed with data
+- `php artisan serve` - Start development server
+
+## Routes
+
+- `/` - Welcome page
+- `/dashboard` - User dashboard (authenticated)
+- `/tournaments` - Tournament management
+- `/players` - Player management
+- `/admin` - Admin dashboard (admin role required)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests
+5. Submit a pull request
+
+## License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

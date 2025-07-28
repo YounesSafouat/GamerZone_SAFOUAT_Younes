@@ -1,119 +1,121 @@
-<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
-<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('app-layout'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-     <?php $__env->slot('header', null, []); ?> 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Edit Player')); ?>
+<!DOCTYPE html>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
-        </h2>
-     <?php $__env->endSlot(); ?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GamerZone - Edit Player</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <form action="<?php echo e(route('players.update', $player->id)); ?>" method="POST">
-                        <?php echo csrf_field(); ?>
-                        <?php echo method_field('PUT'); ?>
-
-                        <div class="mb-4">
-                            <label for="user_id" class="block text-sm font-medium text-gray-700">User</label>
-                            <input type="text" value="<?php echo e($player->user->name); ?> (<?php echo e($player->user->email); ?>)"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
-                            <input type="hidden" name="user_id" value="<?php echo e($player->user_id); ?>">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="tournament_id" class="block text-sm font-medium text-gray-700">Tournament
-                                (Optional)</label>
-                            <select name="tournament_id" id="tournament_id"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                <option value="">Select a tournament</option>
-                                <?php $__currentLoopData = $tournaments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tournament): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($tournament->id); ?>"
-                                        <?php echo e(old('tournament_id', $player->tournament_id) == $tournament->id ? 'selected' : ''); ?>>
-                                        <?php echo e($tournament->name); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                            <?php $__errorArgs = ['tournament_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p class="text-red-500 text-xs mt-1"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="game_username" class="block text-sm font-medium text-gray-700">Game
-                                Username</label>
-                            <input type="text" name="game_username" id="game_username"
-                                value="<?php echo e(old('game_username', $player->game_username)); ?>"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <?php $__errorArgs = ['game_username'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p class="text-red-500 text-xs mt-1"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="game_type" class="block text-sm font-medium text-gray-700">Game Type</label>
-                            <input type="text" name="game_type" id="game_type"
-                                value="<?php echo e(old('game_type', $player->game_type)); ?>"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <?php $__errorArgs = ['game_type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p class="text-red-500 text-xs mt-1"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-                        <div class="flex items-center justify-end">
-                            <a href="<?php echo e(route('players.index')); ?>"
-                                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                Cancel
-                            </a>
-                            <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Update Player
-                            </button>
-                        </div>
-                    </form>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-semibold text-gray-900">Edit Player</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="<?php echo e(route('players.show', $player)); ?>" class="text-gray-700 hover:text-gray-900">Back to
+                            Player</a>
+                        <a href="<?php echo e(route('players.index')); ?>" class="text-gray-700 hover:text-gray-900">All Players</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Edit Player: <?php echo e($player->user->name); ?></h2>
+
+                        <?php if($errors->any()): ?>
+                            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
+                                <ul class="list-disc list-inside">
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+
+                        <form method="POST" action="<?php echo e(route('players.update', $player)); ?>">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
+
+                            <div class="mb-4">
+                                <label for="tournament_id" class="block text-sm font-medium text-gray-700 mb-2">Select
+                                    Tournament</label>
+                                <select name="tournament_id" id="tournament_id" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <option value="">Choose a tournament...</option>
+                                    <?php $__currentLoopData = $tournaments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tournament): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($tournament->id); ?>"
+                                            <?php echo e(old('tournament_id', $player->tournament_id) == $tournament->id ? 'selected' : ''); ?>>
+                                            <?php echo e($tournament->name); ?> (<?php echo e($tournament->start_date->format('M d, Y')); ?>)
+                                        </option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="game_username" class="block text-sm font-medium text-gray-700 mb-2">Game
+                                    Username</label>
+                                <input type="text" name="game_username" id="game_username"
+                                    value="<?php echo e(old('game_username', $player->game_username)); ?>" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    placeholder="Your in-game username">
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="game_type" class="block text-sm font-medium text-gray-700 mb-2">Game
+                                    Type</label>
+                                <select name="game_type" id="game_type" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <option value="">Select game type...</option>
+                                    <option value="FPS"
+                                        <?php echo e(old('game_type', $player->game_type) == 'FPS' ? 'selected' : ''); ?>>FPS
+                                        (First Person Shooter)</option>
+                                    <option value="MOBA"
+                                        <?php echo e(old('game_type', $player->game_type) == 'MOBA' ? 'selected' : ''); ?>>MOBA
+                                        (Multiplayer Online Battle Arena)</option>
+                                    <option value="RTS"
+                                        <?php echo e(old('game_type', $player->game_type) == 'RTS' ? 'selected' : ''); ?>>RTS
+                                        (Real-Time Strategy)</option>
+                                    <option value="Fighting"
+                                        <?php echo e(old('game_type', $player->game_type) == 'Fighting' ? 'selected' : ''); ?>>
+                                        Fighting</option>
+                                    <option value="Racing"
+                                        <?php echo e(old('game_type', $player->game_type) == 'Racing' ? 'selected' : ''); ?>>Racing
+                                    </option>
+                                    <option value="Sports"
+                                        <?php echo e(old('game_type', $player->game_type) == 'Sports' ? 'selected' : ''); ?>>Sports
+                                    </option>
+                                    <option value="Other"
+                                        <?php echo e(old('game_type', $player->game_type) == 'Other' ? 'selected' : ''); ?>>Other
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="flex justify-end space-x-4">
+                                <a href="<?php echo e(route('players.show', $player)); ?>"
+                                    class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">
+                                    Cancel
+                                </a>
+                                <button type="submit"
+                                    class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                    Update Player
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
- <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
-<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
-<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
-<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
-<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
+</body>
+
+</html>
 <?php /**PATH C:\Users\PC\Desktop\fac\laravel\gamerzone\resources\views/players/edit.blade.php ENDPATH**/ ?>
